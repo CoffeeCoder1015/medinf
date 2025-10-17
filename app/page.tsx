@@ -9,6 +9,7 @@ import { DrugIdentification } from "@/lib/types";
 import { useState } from "react";
 import DrugConfirmation from "@/components/confirmation";
 import DrugContext from "@/components/context";
+import Disclaimer from "@/components/disclaimer";
 
 export default function Home() {
   const [identifiedDrug, setIdentifiedDrug] = useState<DrugIdentification | null>(null)
@@ -92,6 +93,7 @@ export default function Home() {
         onAnalyze={handleAnalyze}
       />
       }
+      <Disclaimer/>
     </div>
   );
 }
