@@ -8,6 +8,7 @@ import MedSearch from "@/components/fda-search";
 import { DrugIdentification } from "@/lib/types";
 import { useState } from "react";
 import DrugConfirmation from "@/components/confirmation";
+import DrugContext from "@/components/context";
 
 export default function Home() {
   const [identifiedDrug, setIdentifiedDrug] = useState<DrugIdentification | null>(null)
@@ -52,6 +53,17 @@ export default function Home() {
     setError("Please try searching again with a different query or image.")
   }
 
+  const handleRemoveDrug = (id: string) => {
+    setConfirmedDrugs(confirmedDrugs.filter((drug) => drug.id !== id))
+  }
+
+  const handleAnalyze = () => {
+    if (confirmedDrugs.length > 0) {
+        // setShowAnalysis(true)
+    }
+  }
+
+
   return (
     <div className="max-w-4xl justify-center mx-auto h-screen flex items-center flex-col gap-y-5">
       <SplitText
@@ -72,6 +84,14 @@ export default function Home() {
         onConfirm={handleConfirm}
         onReject={handleReject}
       /> }
+      {
+        confirmedDrugs.length > 0 && 
+      <DrugContext
+        drugs={confirmedDrugs}
+        onRemove={handleRemoveDrug}
+        onAnalyze={handleAnalyze}
+      />
+      }
     </div>
   );
 }
