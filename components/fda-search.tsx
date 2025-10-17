@@ -16,6 +16,7 @@ interface DrugSearchResult {
   manufacturer: string
   dosageForm: string
   strength: string
+  route: string
 }
 
 interface DrugSearchComboboxProps {
@@ -112,7 +113,10 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
                         <span className="block">{drug.genericName}</span>
                       )}
                       <span className="block">
-                        {drug.strength} {drug.dosageForm}
+                        {drug.manufacturer}
+                      </span>
+                      <span>
+                        {drug.route}
                       </span>
                       <span className="block">NDC: {drug.ndcNumber}</span>
                     </div>
