@@ -49,7 +49,7 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
   }
 
   const handleSelect = (drug: DrugIdentification) => {
-    setSelectedValue(drug.name)
+    setSelectedValue(drug.brandName)
     setOpen(false)
     onSelect(drug)
     // Reset after selection
@@ -84,9 +84,9 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
                 >
                   <Pill className="h-4 w-4 mt-0.5 shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium">{drug.name}</div>
+                    <div className="font-medium">{drug.brandName}</div>
                     <div className="text-xs text-muted-foreground truncate">
-                      {drug.genericName && drug.genericName !== drug.name && (
+                      {drug.genericName && drug.genericName !== drug.brandName && (
                         <span className="block">{drug.genericName}</span>
                       )}
                       <span className="block">
@@ -99,7 +99,7 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
                     </div>
                   </div>
                   <Check
-                    className={cn("h-4 w-4 shrink-0", selectedValue === drug.name ? "opacity-100" : "opacity-0")}
+                    className={cn("h-4 w-4 shrink-0", selectedValue === drug.brandName ? "opacity-100" : "opacity-0")}
                   />
                 </CommandItem>
               ))}

@@ -1,6 +1,5 @@
 export interface DrugIdentification {
   id: string ,
-  name:string ,
   ndcNumber: string ,
   genericName: string ,
   brandName: string ,

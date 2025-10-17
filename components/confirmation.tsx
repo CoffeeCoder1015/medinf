@@ -30,22 +30,13 @@ export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfi
               <span className="font-medium text-foreground">NDC Number:</span>{" "}
               <span className="font-mono text-muted-foreground">{drug.ndcNumber}</span>
             </div>
+            <div>
+              <span className="font-medium text-foreground">NDC Number:</span>{" "}
+            </div>
             {drug.manufacturer && (
               <div>
                 <span className="font-medium text-foreground">Manufacturer:</span>{" "}
                 <span className="text-muted-foreground">{drug.manufacturer}</span>
-              </div>
-            )}
-            {drug.dosageForm && (
-              <div>
-                <span className="font-medium text-foreground">Dosage Form:</span>{" "}
-                <span className="text-muted-foreground">{drug.dosageForm}</span>
-              </div>
-            )}
-            {drug.strength && (
-              <div>
-                <span className="font-medium text-foreground">Strength:</span>{" "}
-                <span className="text-muted-foreground">{drug.strength}</span>
               </div>
             )}
           </div>
