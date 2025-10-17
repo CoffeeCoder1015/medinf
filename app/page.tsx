@@ -5,9 +5,14 @@ import { Camera, Search } from "lucide-react";
 import SplitText from "@/components/SplitText";
 import Image from "next/image";
 import MedSearch from "@/components/fda-search";
+import { DrugIdentification } from "@/lib/types";
 
 export default function Home() {
-  const handleAnimationComplete = () => {
+  function onSearchSelect(drug: DrugIdentification) {
+    console.log(drug)
+  } 
+
+  function handleAnimationComplete() {
     console.log('All letters have animated!');
   };
 
@@ -20,7 +25,7 @@ export default function Home() {
               Search by picture
             </Button>
             <div className="min-h-15">
-              <MedSearch/>
+              <MedSearch onSelect={onSearchSelect}/>
             </div>
         </CardContent>
       </Card>

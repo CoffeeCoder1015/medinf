@@ -83,9 +83,7 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
   }
 
   return (
-    <Card>
-      <CardContent>
-      <Command shouldFilter={false}>
+      <Command shouldFilter={false} className="border">
         <CommandInput placeholder="Type medicine name or NDC..." value={searchQuery} onValueChange={setSearchQuery} />
         <CommandList>
           {isLoading && (
@@ -95,7 +93,7 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
             <CommandEmpty>No medicines found. Try a different search term.</CommandEmpty>
           )}
           {!isLoading && searchQuery.length < 2 && (
-            <div className="pt-6 text-center text-sm text-muted-foreground">Type at least 2 characters to search</div>
+            <div className="pb-2 pt-2 text-center text-sm text-muted-foreground">Type at least 2 characters to search</div>
           )}
           {!isLoading && results.length > 0 && (
             <CommandGroup heading="Medicines">
@@ -128,8 +126,6 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
           )}
         </CommandList>
       </Command>
-      </CardContent>
-    </Card>
   )
 }
 
