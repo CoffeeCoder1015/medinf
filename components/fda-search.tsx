@@ -7,18 +7,6 @@ import { cn } from "@/lib/utils"
 import type { DrugIdentification } from "@/lib/types"
 import { Card, CardContent } from "./ui/card"
 
-interface DrugSearchResult {
-  id: string
-  name: string
-  ndcNumber: string
-  genericName: string
-  brandName: string
-  manufacturer: string
-  dosageForm: string
-  strength: string
-  route: string
-}
-
 interface DrugSearchComboboxProps {
   onSelect: (drug: DrugIdentification) => void
   disabled?: boolean
@@ -27,7 +15,7 @@ interface DrugSearchComboboxProps {
 export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProps) {
   const [open, setOpen] = React.useState(false)
   const [searchQuery, setSearchQuery] = React.useState("")
-  const [results, setResults] = React.useState<DrugSearchResult[]>([])
+  const [results, setResults] = React.useState<DrugIdentification[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
   const [selectedValue, setSelectedValue] = React.useState("")
 
@@ -60,21 +48,10 @@ export default function MedSearch({ onSelect, disabled }: DrugSearchComboboxProp
     }
   }
 
-  const handleSelect = (drug: DrugSearchResult) => {
+  const handleSelect = (drug: DrugIdentification) => {
     setSelectedValue(drug.name)
     setOpen(false)
-    onSelect({
-      id: crypto.randomUUID(),
-      name: drug.name,
-      ndcNumber: drug.ndcNumber,
-      genericName: drug.genericName,
-      brandName: drug.brandName,
-      manufacturer: drug.manufacturer,
-      dosageForm: drug.dosageForm,
-      strength: drug.strength,
-      confirmed: false,
-      timestamp: Date.now(),
-    })
+    onSelect(drug)
     // Reset after selection
     setTimeout(() => {
       setSearchQuery("")

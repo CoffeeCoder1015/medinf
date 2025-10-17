@@ -44,19 +44,37 @@ export async function GET(req: NextRequest) {
       const genericName = openfda.generic_name?.[0] || openfda.substance_name?.[0] || "Unknown"
       const ndcs = openfda.product_ndc || []
       const primaryNdc = ndcs[0] || "N/A"
+      const id = openfda.spl_id
 
-      return {
-        id: `${primaryNdc}-${skip + index}`,
+      const return_object =  {
+        id: id,
         name: brandName,
         ndcNumber: primaryNdc,
-        genericName,
-        brandName,
+        genericName: genericName,
+        brandName:brandName,
         manufacturer: openfda.manufacturer_name?.[0] || "Unknown",
-        dosageForm: openfda.dosage_form?.[0] || "N/A",
-        strength: openfda.strength?.[0] || "N/A",
         route: openfda.route?.[0] || "N/A",
-        allNdcs: ndcs,
-      }
+        ndcs:ndcs,
+        uclass: result.spl_uncalssified_section,
+        active_ingridient: result.active_ingredient,
+        purpose: result.purpose,
+        indications_and_usage: result.indications_and_usage,
+        warnings: result.warnings,
+        ask_doctor: result.ask_doctor,
+        ask_doctor_or_pharmacist: result.ask_doctor_or_pharmacist,
+        when_using: result.when_using,
+        stop_use: result.stop_use,
+        pregnancy_or_breast_feeding: result.pregnancy_or_breast_feeding,
+        keep_out_of_reach_of_children: result.keep_out_of_reach_of_children,
+        overdosage: result.overdosage,
+        dosage_and_administration: result.dosage_and_administration,
+        dosage_and_administration_table: result.dosage_and_administration_table,
+        storage_and_handling: result.storage_and_handling,
+        inactive_ingredient: result.inactive_ingredient,
+        questions: result.questions,
+    }
+      
+      return return_object
     })
 
     const hasMore = results.length === limit
