@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Camera, Search } from "lucide-react";
 import SplitText from "@/components/SplitText";
 import Image from "next/image";
+import MedSearch from "@/components/fda-search";
 
 export default function Home() {
   const handleAnimationComplete = () => {
@@ -12,16 +13,15 @@ export default function Home() {
 
   function MedicineContext() {
     return ( 
-      <Card className="w-5xl">
-        <CardContent className="ml-10 mr-10 flex flex-col gap-5">
-            <Button>
+      <Card className="w-4xl">
+        <CardContent className="ml-2 mr-2 flex flex-col gap-2">
+            <Button className="min-h-15">
               <Camera />
               Search by picture
             </Button>
-            <Button>
-              <Search/>
-              Search by name
-            </Button>
+            <div className="min-h-15">
+              <MedSearch/>
+            </div>
         </CardContent>
       </Card>
     )
@@ -31,8 +31,8 @@ export default function Home() {
   return (
     <div className="max-w-5xl justify-center mx-auto h-screen flex items-center flex-col">
       <SplitText
-        text="🚑Medinf"
-        className="text-5xl font-semibold text-center pb-10"
+        text="MedInf 🚑"
+        className="text-5xl text-center pb-10"
         delay={100}
         duration={0.6}
         ease="power3.out"
