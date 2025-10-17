@@ -6,10 +6,17 @@ import SplitText from "@/components/SplitText";
 import Image from "next/image";
 import MedSearch from "@/components/fda-search";
 import { DrugIdentification } from "@/lib/types";
+import { useState } from "react";
+import DrugConfirmation from "@/components/confirmation";
 
 export default function Home() {
+  const [identifiedDrug, setIdentifiedDrug] = useState<DrugIdentification | null>(null)
+  const [confirmedDrugs, setConfirmedDrugs] = useState<DrugIdentification[]>([])
+  const [error, setError] = useState<string | null>(null)
+
   function onSearchSelect(drug: DrugIdentification) {
     console.log(drug)
+    setIdentifiedDrug(drug)
   } 
 
   function handleAnimationComplete() {
@@ -32,9 +39,21 @@ export default function Home() {
     )
   }
   
-  
+  const handleConfirm = (drug: DrugIdentification) => {
+    setConfirmedDrugs([...confirmedDrugs, { ...drug, confirmed: true }])
+    setIdentifiedDrug(null)
+    // setImageFile(null)
+    // setImagePreview(null)
+    setError(null)
+  }
+
+  const handleReject = () => {
+    setIdentifiedDrug(null)
+    setError("Please try searching again with a different query or image.")
+  }
+
   return (
-    <div className="max-w-5xl justify-center mx-auto h-screen flex items-center flex-col">
+    <div className="max-w-4xl justify-center mx-auto h-screen flex items-center flex-col gap-y-5">
       <SplitText
         text="MedInf 🚑"
         className="text-5xl text-center pb-10"
@@ -48,6 +67,11 @@ export default function Home() {
         onLetterAnimationComplete={handleAnimationComplete}
       />
       <MedicineContext />
+      {identifiedDrug && <DrugConfirmation
+        drug={identifiedDrug}
+        onConfirm={handleConfirm}
+        onReject={handleReject}
+      /> }
     </div>
   );
 }
