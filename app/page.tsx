@@ -66,7 +66,7 @@ export default function Home() {
 
 
   return (
-    <div className="max-w-4xl justify-center mx-auto h-screen flex items-center flex-col gap-y-5">
+    <div className="max-w-4xl justify-center mx-auto min-h-screen flex items-center flex-col gap-y-5">
       <SplitText
         text="MedInf 🚑"
         className="text-5xl text-center pb-10"
