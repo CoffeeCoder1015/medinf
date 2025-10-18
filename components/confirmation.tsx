@@ -15,7 +15,7 @@ interface DrugConfirmationProps {
 
 export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfirmationProps) {
   return (
-    <Alert className="w-99">
+    <Alert className="w-99 lg:w-4xl">
       <AlertTitle className="text-lg font-semibold mb-4">Medicine Identified</AlertTitle>
       <AlertDescription>
         <div className="space-y-4">
