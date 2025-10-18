@@ -2,10 +2,9 @@
 
 import type { DrugIdentification } from "@/lib/types"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, XCircle, RefreshCw } from "lucide-react"
+import { CheckCircle2, XCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
-import { Card, CardContent } from "./ui/card"
 import HTML from "./dynamicHTML"
 
 interface DrugConfirmationProps {

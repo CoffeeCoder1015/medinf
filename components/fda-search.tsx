@@ -5,7 +5,6 @@ import { Check, Pill } from "lucide-react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { cn } from "@/lib/utils"
 import type { DrugIdentification } from "@/lib/types"
-import { Card, CardContent } from "./ui/card"
 
 interface DrugSearchComboboxProps {
   onSelect: (drug: DrugIdentification) => void
