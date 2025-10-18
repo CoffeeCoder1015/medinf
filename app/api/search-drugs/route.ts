@@ -1,6 +1,16 @@
+import { OpenFDARecord } from "@/lib/types";
 import { type NextRequest, NextResponse } from "next/server"
 
 export const maxDuration = 30
+
+function invertOpenFDA<T extends OpenFDARecord>(record: T) {
+  const { openfda, ...rest } = record;
+
+  return {
+    openfda,
+    data: rest,
+  };
+}
 
 export async function GET(req: NextRequest) {
   try {
@@ -45,6 +55,7 @@ export async function GET(req: NextRequest) {
       const ndcs = openfda.product_ndc || []
       const primaryNdc = ndcs[0] || "N/A"
       const id = openfda.spl_id
+      const inverted = invertOpenFDA(result)
 
       const return_object =  {
         id: id,
@@ -55,24 +66,9 @@ export async function GET(req: NextRequest) {
         manufacturer: openfda.manufacturer_name?.[0] || "Unknown",
         route: openfda.route?.[0] || "N/A",
         ndcs:ndcs,
-        uclass: result.spl_uncalssified_section,
-        active_ingridient: result.active_ingredient,
-        purpose: result.purpose,
-        indications_and_usage: result.indications_and_usage,
-        warnings: result.warnings,
-        ask_doctor: result.ask_doctor,
-        ask_doctor_or_pharmacist: result.ask_doctor_or_pharmacist,
-        when_using: result.when_using,
-        stop_use: result.stop_use,
-        pregnancy_or_breast_feeding: result.pregnancy_or_breast_feeding,
-        keep_out_of_reach_of_children: result.keep_out_of_reach_of_children,
-        overdosage: result.overdosage,
-        dosage_and_administration: result.dosage_and_administration,
-        dosage_and_administration_table: result.dosage_and_administration_table,
-        storage_and_handling: result.storage_and_handling,
-        inactive_ingredient: result.inactive_ingredient,
-        questions: result.questions,
-    }
+        type: openfda.product_type,
+        data: inverted.data
+      }
       
       return return_object
     })
