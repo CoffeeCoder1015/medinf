@@ -27,17 +27,19 @@ export default function Home() {
 
   function MedicineContext() {
     return ( 
-      <Card className="w-4xl bg-gray-100">
-        <CardContent className="ml-2 mr-2 flex flex-col gap-2">
-            <Button className="min-h-15" variant="outline">
-              <Camera />
-              Search by picture
-            </Button>
-            <div className="min-h-15">
-              <MedSearch onSelect={onSearchSelect}/>
-            </div>
-        </CardContent>
-      </Card>
+      <div className="lg:w-4xl w-99">
+        <Card className=" bg-gray-100">
+          <CardContent className="ml-2 mr-2 flex flex-col gap-2">
+              <Button className="min-h-15" variant="outline">
+                <Camera />
+                Search by picture
+              </Button>
+              <div className="min-h-15">
+                <MedSearch onSelect={onSearchSelect}/>
+              </div>
+          </CardContent>
+        </Card>
+      </div>
     )
   }
   

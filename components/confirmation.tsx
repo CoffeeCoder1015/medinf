@@ -16,7 +16,7 @@ interface DrugConfirmationProps {
 
 export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfirmationProps) {
   return (
-    <Alert>
+    <Alert className="w-99">
       <AlertTitle className="text-lg font-semibold mb-4">Medicine Identified</AlertTitle>
       <AlertDescription>
         <div className="space-y-4">
@@ -51,7 +51,7 @@ export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfi
                 return (
                   <Collapsible key={index}>
                     <CollapsibleTrigger className="text-foreground text-md" asChild>
-                      <Button variant={"outline"}>
+                      <Button variant={"outline"} className="text-wrap">
                         {key}
                       </Button>
                     </CollapsibleTrigger>

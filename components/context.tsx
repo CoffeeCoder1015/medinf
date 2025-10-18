@@ -13,7 +13,7 @@ interface DrugContextProps {
 
 export default function DrugContext({ drugs, onRemove, onAnalyze }: DrugContextProps) {
   return (
-      <Card className="w-4xl bg-gray-100 p-3">
+      <Card className="lg:w-4xl w-99 bg-gray-100 p-3">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <Pill/>
