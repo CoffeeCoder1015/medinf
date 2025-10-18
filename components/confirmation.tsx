@@ -2,7 +2,7 @@
 
 import type { DrugIdentification } from "@/lib/types"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, XCircle } from "lucide-react"
+import { CheckCircle2,  XCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
 import HTML from "./dynamicHTML"
@@ -58,8 +58,8 @@ export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfi
                     {
                       Array.isArray(drug.data[key]) ?
                       (Object.values(drug.data[key]) as Array<string>).map(function(str:string, index: number) {
-                        if (key === "dosage_and_administration_table" || key === "clinical_pharmacology_table" || key === "pharmacokinetics_table" || key=="clinical_studies_table") {
-                         return HTML(str)
+                        if (key === "dosage_and_administration_table" || key === "clinical_pharmacology_table" || key === "pharmacokinetics_table" || key=="clinical_studies_table" || key=="adverse_reactions_table") {
+                         return HTML(str,index.toString())
                         }
                         return <div key={index}>{str}</div>
                       }) : drug.data[key]

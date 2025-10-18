@@ -1,9 +1,8 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Camera, Search } from "lucide-react";
+import { Camera } from "lucide-react";
 import SplitText from "@/components/SplitText";
-import Image from "next/image";
 import MedSearch from "@/components/fda-search";
 import { DrugIdentification } from "@/lib/types";
 import { useState } from "react";
@@ -14,6 +13,7 @@ import Disclaimer from "@/components/disclaimer";
 export default function Home() {
   const [identifiedDrug, setIdentifiedDrug] = useState<DrugIdentification | null>(null)
   const [confirmedDrugs, setConfirmedDrugs] = useState<DrugIdentification[]>([])
+  const [analysis, setAnalysis] = useState<boolean>(false)
 
   function onSearchSelect(drug: DrugIdentification) {
     console.log(drug)
@@ -29,10 +29,10 @@ export default function Home() {
       <div className="lg:w-4xl w-99">
         <Card className=" bg-gray-100">
           <CardContent className="ml-2 mr-2 flex flex-col gap-2">
-              <Button className="min-h-15" variant="outline">
+              {/* <Button className="min-h-15" variant="outline">
                 <Camera />
                 Search by picture
-              </Button>
+              </Button> */}
               <div className="min-h-15">
                 <MedSearch onSelect={onSearchSelect}/>
               </div>
@@ -59,8 +59,16 @@ export default function Home() {
 
   const handleAnalyze = () => {
     if (confirmedDrugs.length > 0) {
-        // setShowAnalysis(true)
+        setAnalysis(true)
     }
+  }
+  
+  function stopAnalysis() {
+      setAnalysis(false)
+  }
+  
+  if (analysis) {
+    return <Button onClick={stopAnalysis}>back</Button>
   }
 
   return (
