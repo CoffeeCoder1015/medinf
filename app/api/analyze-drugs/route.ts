@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     * who should use
     * what to consult professionals on
     * how it should be stored
-You also need to use the provided labeling information to consider possible contradictions and any similar dangers.
+You also need to use the provided labeling information to consider possible contradictions and any similar dangers, write this concisely and put this first in your response.
 `,
         prompt: `Write a report summarizing the following medications:${body}`
     })
