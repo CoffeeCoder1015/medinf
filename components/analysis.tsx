@@ -3,14 +3,29 @@ import AnimatedContent from "./AnimatedContent";
 import { Button } from "./ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 export interface AnalysisProps{
     closeAnalysis: () => void
     all_medication: DrugIdentification[]
 }
 
+function resultSkeleton() {
+    return (
+        <div className="flex flex-col gap-3 m-5">
+            <Skeleton className="h-[125px] w-full rounded-xl" />
+            <div className="space-y-2">
+                <Skeleton className="h-4" />
+                <Skeleton className="h-4" />
+            </div>
+        </div>
+    )
+}
+
 export default function AnalysisPanel({closeAnalysis, all_medication}: AnalysisProps) {
+    const [report,setReport] = useState<string>("");
+
     useEffect(function () {
         fetch("/api/analyze-drugs",{method:"POST",body:JSON.stringify(all_medication)}).then(function (response) {
             console.log(response)
@@ -43,7 +58,7 @@ export default function AnalysisPanel({closeAnalysis, all_medication}: AnalysisP
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <div>Content to Animate</div>
+                    {report === "" && resultSkeleton()}
                 </CardContent>
             </Card>
         </AnimatedContent>
