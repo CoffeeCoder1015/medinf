@@ -69,7 +69,7 @@ export default function Home() {
   }
   
   if (analysis) {
-    return <div className="max-w-4xl justify-center mx-auto min-h-screen flex items-center flex-col gap-y-5">
+    return <div className="max-w-4xl pt-20 mx-auto min-h-screen flex items-center flex-col gap-y-5">
       <AnalysisPanel closeAnalysis={closeAnalysis} all_medication={confirmedDrugs}/>
     </div>
   }
