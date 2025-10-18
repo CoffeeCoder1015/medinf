@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
+import {Streamdown} from "streamdown";
 
 export interface AnalysisProps{
     closeAnalysis: () => void
@@ -29,6 +30,10 @@ export default function AnalysisPanel({closeAnalysis, all_medication}: AnalysisP
     useEffect(function () {
         fetch("/api/analyze-drugs",{method:"POST",body:JSON.stringify(all_medication)}).then(function (response) {
             console.log(response)
+            return response
+        }).then((response)=>(response.json())).then(function (json) {
+            console.log(json)
+            setReport(json.steps[0].content[0].text)
         })
     },[])
     
@@ -59,6 +64,9 @@ export default function AnalysisPanel({closeAnalysis, all_medication}: AnalysisP
                 </CardHeader>
                 <CardContent>
                     {report === "" && resultSkeleton()}
+                    <Streamdown>
+                        {report}
+                    </Streamdown>
                 </CardContent>
             </Card>
         </AnimatedContent>
