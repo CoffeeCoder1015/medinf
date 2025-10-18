@@ -6,6 +6,7 @@ import { CheckCircle2, XCircle, RefreshCw } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
 import { Card, CardContent } from "./ui/card"
+import HTML from "./dynamicHTML"
 
 interface DrugConfirmationProps {
   drug: DrugIdentification
@@ -59,7 +60,7 @@ export default function DrugConfirmation({ drug, onConfirm, onReject}: DrugConfi
                       Array.isArray(drug.data[key]) ?
                       (Object.values(drug.data[key]) as Array<string>).map(function(str:string, index: number) {
                         if (key === "dosage_and_administration_table" || key === "clinical_pharmacology_table" || key === "pharmacokinetics_table" || key=="clinical_studies_table") {
-                         return <div dangerouslySetInnerHTML={{__html:str}}></div> 
+                         return HTML(str)
                         }
                         return <div key={index}>{str}</div>
                       }) : drug.data[key]
