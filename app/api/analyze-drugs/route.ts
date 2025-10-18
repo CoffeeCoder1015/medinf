@@ -18,6 +18,5 @@ You also need to use the provided labeling information to consider possible cont
 `,
         prompt: `Write a report summarizing the following medications:${body}`
     })
-    console.log(result.text)
     return Response.json(result);
 }
