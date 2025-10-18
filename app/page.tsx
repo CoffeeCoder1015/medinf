@@ -14,7 +14,6 @@ import Disclaimer from "@/components/disclaimer";
 export default function Home() {
   const [identifiedDrug, setIdentifiedDrug] = useState<DrugIdentification | null>(null)
   const [confirmedDrugs, setConfirmedDrugs] = useState<DrugIdentification[]>([])
-  const [error, setError] = useState<string | null>(null)
 
   function onSearchSelect(drug: DrugIdentification) {
     console.log(drug)
@@ -44,16 +43,14 @@ export default function Home() {
   }
   
   const handleConfirm = (drug: DrugIdentification) => {
-    setConfirmedDrugs([...confirmedDrugs, { ...drug, confirmed: true }])
+    setConfirmedDrugs([...confirmedDrugs, { ...drug}])
     setIdentifiedDrug(null)
     // setImageFile(null)
     // setImagePreview(null)
-    setError(null)
   }
 
   const handleReject = () => {
     setIdentifiedDrug(null)
-    setError("Please try searching again with a different query or image.")
   }
 
   const handleRemoveDrug = (id: string) => {
@@ -65,7 +62,6 @@ export default function Home() {
         // setShowAnalysis(true)
     }
   }
-
 
   return (
     <div className="max-w-4xl justify-center mx-auto min-h-screen flex items-center flex-col gap-y-5">
