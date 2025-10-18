@@ -35,7 +35,7 @@ export default function AnalysisPanel({closeAnalysis, all_medication}: AnalysisP
             console.log(json)
             setReport(json.steps[0].content[0].text)
         })
-    },[])
+    },[all_medication])
     
     return ( 
         <AnimatedContent
