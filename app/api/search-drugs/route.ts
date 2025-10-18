@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
     const data = await response.json()
     const results = data.results || []
 
-    const transformedResults = results.map((result: any, index: number) => {
+    const transformedResults = results.map((result: OpenFDARecord) => {
       const openfda = result.openfda || {}
       const brandName = openfda.brand_name?.[0] || "Unknown"
       const genericName = openfda.generic_name?.[0] || openfda.substance_name?.[0] || "Unknown"

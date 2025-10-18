@@ -13,7 +13,7 @@ export interface DrugIdentification {
   route:string ,
   type: string,
   ndcs: string[],
-  data: any
+  data: string[] | Record<string, string[]>;
 }
 
 export interface MedGemmaAnalysis {
