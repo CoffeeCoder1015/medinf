@@ -1,6 +1,6 @@
 # Medinf 🚑
 
-*MedInf* is a proof of concept project aiming to provide an interface to learn more about everyday medications using AI. 
+*MedInf* is a **proof of concept** project aiming to provide an interface to learn more about everyday medications using AI. 
 
 Leveraging the openFDA API *MedInf* is able to provide **15+** different labels (from *usage warnings* to *dosage administration tables*)
 as context for AI analysis *MedInf* can combinationally consider many medications at once to supply the user at speed on all relevant information
